@@ -98,9 +98,10 @@ def main():
                     # Muestra el contexto de cada ocurrencia
                     st.subheader("Ocurrencias y su contexto:")
                     for occurrence in all_occurrences:
-                        # Muestra el encabezado y el versículo solo en la línea en español
+                        # Muestra el encabezado y el versículo en la línea en español
                         st.markdown(f"**{occurrence['heading']}, {occurrence['verse']}**: {occurrence['spanish_text']}")
-                        st.markdown(f"**{occurrence['greek_text']}**") # Se ha quitado la repetición aquí
+                        # Muestra solo el texto griego en la línea siguiente, sin el versículo
+                        st.markdown(f"{occurrence['greek_text']}")
                         st.markdown(f"**Palabra encontrada:** `{occurrence['found_word']}`")
                         st.markdown("---")
                 else:
