@@ -18,7 +18,7 @@ def find_and_display_occurrences(lines, search_term):
             current_heading = line.strip()
             continue # Salta a la siguiente línea, ya que esta es un encabezado
             
-        # 2. Extrae el número de versículo y limpia la línea en español
+        # 2. Extrae el número de versículo y la línea en español
         spanish_line_match = re.match(r'^(\d+)\s(.+)$', line.strip())
         
         # 3. Busca la palabra en la línea griega, que es la siguiente
@@ -98,8 +98,9 @@ def main():
                     # Muestra el contexto de cada ocurrencia
                     st.subheader("Ocurrencias y su contexto:")
                     for occurrence in all_occurrences:
+                        # Muestra el encabezado y el versículo solo en la línea en español
                         st.markdown(f"**{occurrence['heading']}, {occurrence['verse']}**: {occurrence['spanish_text']}")
-                        st.markdown(f"**{occurrence['heading']}, {occurrence['verse']}**: {occurrence['greek_text']}")
+                        st.markdown(f"**{occurrence['greek_text']}**") # Se ha quitado la repetición aquí
                         st.markdown(f"**Palabra encontrada:** `{occurrence['found_word']}`")
                         st.markdown("---")
                 else:
