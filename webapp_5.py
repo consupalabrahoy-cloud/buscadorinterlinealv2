@@ -23,10 +23,10 @@ def find_and_display_occurrences(lines, search_term):
         
         # 3. Busca la palabra en la línea griega, que es la siguiente
         if i + 1 < len(lines):
-            greek_line = lines[i + 1].strip()
+            greek_line_raw = lines[i + 1].strip()
             
             # Utiliza una expresión regular para encontrar todas las palabras en la línea griega
-            words_in_greek_line = re.findall(r'[\w’]+', greek_line)
+            words_in_greek_line = re.findall(r'[\w’]+', greek_line_raw)
             
             for word in words_in_greek_line:
                 if search_term.lower() in word.lower():
@@ -41,7 +41,7 @@ def find_and_display_occurrences(lines, search_term):
                             "heading": current_heading,
                             "verse": verse_number,
                             "spanish_text": spanish_text,
-                            "greek_text": greek_line,
+                            "greek_text": greek_line_raw,
                             "found_word": word
                         })
     
@@ -98,10 +98,13 @@ def main():
                     # Muestra el contexto de cada ocurrencia
                     st.subheader("Ocurrencias y su contexto:")
                     for occurrence in all_occurrences:
-                        # Muestra el encabezado y el versículo en la línea en español
-                        st.markdown(f"**{occurrence['heading']}, {occurrence['verse']}**: {occurrence['spanish_text']}")
-                        # Muestra solo el texto griego en la línea siguiente, sin el versículo
-                        st.markdown(f"{occurrence['greek_text']}")
+                        # Muestra el encabezado
+                        st.markdown(f"**{occurrence['heading']}**")
+                        # Muestra el versículo y la línea en español
+                        st.markdown(f"{occurrence['verse']} {occurrence['spanish_text']}")
+                        # Muestra el versículo y la línea en griego
+                        st.markdown(f"{occurrence['verse']} {occurrence['greek_text']}")
+                        # Muestra la palabra encontrada
                         st.markdown(f"**Palabra encontrada:** `{occurrence['found_word']}`")
                         st.markdown("---")
                 else:
