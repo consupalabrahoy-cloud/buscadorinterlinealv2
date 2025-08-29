@@ -59,7 +59,7 @@ def main():
     Función principal de la aplicación Streamlit.
     Configura la interfaz y maneja la lógica.
     """
-    st.title("Buscador avanzado en texto interlineal 🇬🇷🇪�")
+    st.title("Buscador avanzado en texto interlineal español-griego")
     st.markdown("---")
     
     st.write("Esta aplicación te ayuda a buscar palabras griegas en un archivo de texto interlineal (griego/español) y muestra las ocurrencias, incluyendo el encabezado y el versículo. 🔍")
@@ -123,5 +123,6 @@ def main():
 # Ejecuta la función principal si el script se ejecuta directamente
 if __name__ == "__main__":
     main()
+
 
 
