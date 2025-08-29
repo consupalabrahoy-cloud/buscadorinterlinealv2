@@ -62,7 +62,7 @@ def main():
     st.title("Buscador avanzado en texto interlineal español-griego")
     st.markdown("---")
     
-    st.write("Esta aplicación te ayuda a buscar palabras griegas en un archivo de texto interlineal (griego/español) y muestra las ocurrencias, incluyendo el encabezado y el versículo. 🔍")
+    st.write("Esta aplicación te ayuda a buscar palabras griegas en un archivo de texto interlineal (español/griego) y muestra las ocurrencias, incluyendo el encabezado y el versículo. 🔍")
 
     # Widget para la carga del archivo
     uploaded_file = st.file_uploader(
@@ -82,7 +82,7 @@ def main():
         if uploaded_file is None:
             st.warning("Por favor, sube un archivo de texto para analizar.")
         elif not search_term:
-            st.warning("Por favor, ingresa una secuencia de letras a buscar.")
+            st.warning("Por favor, ingresa una palabra (o secuencia de letras) a buscar.")
         else:
             try:
                 # Lee el contenido del archivo y lo divide en líneas
@@ -97,7 +97,8 @@ def main():
 
                 # Muestra la lista de palabras únicas encontradas
                 if unique_words:
-                    st.subheader(f"Palabras únicas encontradas ({len(unique_words)}):")
+                    #st.subheader(f"Palabras únicas encontradas que contienen {search_term} ({len(unique_words)}):")
+                    st.subheader(f"Encontramos {len(unique_words)} palabras únicas que contienen la secuencia {search_term}. Estas son:")
                     st.write(", ".join(unique_words))
                     
                     st.markdown("---")
@@ -123,6 +124,7 @@ def main():
 # Ejecuta la función principal si el script se ejecuta directamente
 if __name__ == "__main__":
     main()
+
 
 
 
