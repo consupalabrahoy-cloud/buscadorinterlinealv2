@@ -36,12 +36,19 @@ def find_and_display_occurrences(lines, search_term):
                         verse_number = spanish_line_match.group(1)
                         spanish_text = spanish_line_match.group(2)
                         
+                        # Se ha quitado el número de versículo de la línea griega
+                        # si ya está al principio de la línea
+                        if greek_line_raw.startswith(verse_number):
+                           greek_text = greek_line_raw[len(verse_number):].strip()
+                        else:
+                           greek_text = greek_line_raw
+                        
                         # Agrega la ocurrencia a la lista
                         occurrences.append({
                             "heading": current_heading,
                             "verse": verse_number,
                             "spanish_text": spanish_text,
-                            "greek_text": greek_line_raw,
+                            "greek_text": greek_text,
                             "found_word": word
                         })
     
@@ -52,7 +59,7 @@ def main():
     Función principal de la aplicación Streamlit.
     Configura la interfaz y maneja la lógica.
     """
-    st.title("Buscador avanzado en texto interlineal 🇬🇷🇪🇸")
+    st.title("Buscador avanzado en texto interlineal 🇬🇷🇪�")
     st.markdown("---")
     
     st.write("Esta aplicación te ayuda a buscar palabras griegas en un archivo de texto interlineal (griego/español) y muestra las ocurrencias, incluyendo el encabezado y el versículo. 🔍")
@@ -116,3 +123,4 @@ def main():
 # Ejecuta la función principal si el script se ejecuta directamente
 if __name__ == "__main__":
     main()
+�
